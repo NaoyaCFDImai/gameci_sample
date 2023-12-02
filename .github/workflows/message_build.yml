@@ -1,5 +1,5 @@
 # 名前を付ける。これがGithubActions上に表示される
-name: Run the Windows build
+name: Run Message build
 on:
   workflow_dispatch: {}
 jobs:
@@ -52,6 +52,8 @@ jobs:
         with:
           targetPlatform: StandaloneWindows64
           unityVersion: 2022.3.0f1  #ここに使うUnityのバージョンを入れる
+          buildMethod: Builder.Build
+          customParameters: -profile SomeProfile -someBoolean -someValue exampleValue
 
       # 成果物をZIPにしてアップロードする
       - name: Upload the Windows Build
