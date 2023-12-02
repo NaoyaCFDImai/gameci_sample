@@ -6,10 +6,24 @@ public class Builder
 {
     public static void Build()
     {
+        var message = "";
         var args = System.Environment.GetCommandLineArgs();
         for(var i=0;i<args.Length;i++)
         {
-            Debug.Log($"{i}:{args[i]}");
+            if (args[i] == "-message")
+            {
+                message = args[i + 1];
+            }
+        }
+
+        if(!string.IsNullOrEmpty(message))
+        {
+            Debug.Log("Message---->"+message);
+
+            using(var writer = new System.IO.StreamWriter(Application.streamingAssetsPath+ "/message.txt"))
+            {
+                writer.Write(message);
+            }
         }
 
         var option = new BuildPlayerOptions();
